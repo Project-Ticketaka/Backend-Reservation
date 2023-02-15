@@ -1,9 +1,7 @@
 package com.ticketaka.reservation.controller;
 
-import com.ticketaka.reservation.dto.mail.EmailMessageDTO;
 import com.ticketaka.reservation.dto.request.ReservationDTO;
 import com.ticketaka.reservation.dto.response.ReservationListDTO;
-import com.ticketaka.reservation.service.EmailService;
 import com.ticketaka.reservation.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,12 +17,11 @@ import java.util.Map;
 @RequestMapping("/reservation")
 public class ReservationController {
     private final ReservationService reservationService;
-    private final EmailService emailService;
 
     @PostMapping("/create")
     public ResponseEntity<String> reservation(@RequestBody ReservationDTO dto) {
-//        emailService.sendMail(dto);
         return reservationService.reservation(dto);
+
     }
 
     @GetMapping("/list")

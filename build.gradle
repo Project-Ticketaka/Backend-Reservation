@@ -24,9 +24,6 @@ dependencies {
 	implementation group: 'com.mysql', name: 'mysql-connector-j', version: '8.0.31'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail'
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	implementation group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity5'
 
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'

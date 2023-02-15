@@ -16,7 +16,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class ReservationDTO {
     private Long member_id;
-    private String member_email;
     private String performance_id;
     private int reservation_ticket_count;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
