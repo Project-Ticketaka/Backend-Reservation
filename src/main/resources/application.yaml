@@ -1,12 +1,36 @@
 spring:
-  # MySQL
+  # mysql
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/ticket?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=Asia/Seoul
     username: root
     password: 1234
+  # spring-boot-starter-mail
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: projectticketaka@gmail.com
+    password: vspswtvdyfdmstmb
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+#  mvc:
+#    static-path-pattern: /static/**
+#  thymeleaf:
+#    mode: HTML
+#    encoding: UTF-8
+#    check-template: true
+#    prefix: classpath:/templates/mail
+#    suffix: .html
+#    cache: false
+#  web:
+#    resources:
+#      static-locations: classpath:/static/
 
-  # JPA
+  # springJPA
   jpa:
     properties:
       hibernate:
