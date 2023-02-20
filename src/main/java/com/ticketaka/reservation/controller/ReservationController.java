@@ -1,9 +1,10 @@
 package com.ticketaka.reservation.controller;
 
-import com.ticketaka.reservation.dto.mail.EmailMessageDTO;
+import com.ticketaka.reservation.dto.request.RsvMemberDTO;
 import com.ticketaka.reservation.dto.request.ReservationDTO;
 import com.ticketaka.reservation.dto.response.ReservationListDTO;
 import com.ticketaka.reservation.service.EmailService;
+import com.ticketaka.reservation.service.MemberService;
 import com.ticketaka.reservation.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,6 +20,13 @@ import java.util.Map;
 public class ReservationController {
     private final ReservationService reservationService;
     private final EmailService emailService;
+    private final MemberService memberService;
+
+    @PostMapping("/create/member")
+    public ResponseEntity<String> createMember(@RequestBody RsvMemberDTO dto) {
+        return memberService.createMember(dto);
+    }
+
 
     @PostMapping("/create")
     public ResponseEntity<String> reservation(@RequestBody ReservationDTO dto) {
