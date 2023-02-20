@@ -1,7 +1,7 @@
 FROM gradle:7.5-jdk11-focal AS builder
 RUN pwd
-COPY . ./Member
-WORKDIR ./Member
+COPY . ./Reservation
+WORKDIR ./Reservation
 RUN chmod +x ./gradlew
 RUN ./gradlew bootJar
 
