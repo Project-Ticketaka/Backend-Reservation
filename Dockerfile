@@ -6,7 +6,7 @@ RUN chmod +x ./gradlew
 RUN ./gradlew bootJar
 
 FROM openjdk:11.0.16-jre-slim
-COPY --from=builder /home/gradle/Member/build/libs/*.jar app.jar
+COPY --from=builder /home/gradle/Reservation/build/libs/*.jar app.jar
 
 EXPOSE 8081
 
