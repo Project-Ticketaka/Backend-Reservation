@@ -57,15 +57,15 @@ public class Reservation {
 
     public ReservationListDTO toReservationResponse(){
         return ReservationListDTO.builder()
-                .reservation_id(reservationId)
-                .reservation_ticket_count(reservationTicketCount)
-                .reservation_date(reservationDate)
-                .reservation_time(reservationTime)
-                .reservation_price(reservationPrice)
-                .reservation_poster(reservationPoster)
-                .reservation_total_price(reservationPrice*reservationTicketCount)
-                .reservation_deleted(reservationDeleted)
-                .reservation_createAt(reservationCreateAt)
+                .reservationId(reservationId)
+                .reservationTicketCount(reservationTicketCount)
+                .reservationDate(reservationDate)
+                .reservationTime(reservationTime)
+                .reservationPrice(reservationPrice)
+                .reservationPoster(reservationPoster)
+                .reservationTotalPrice(reservationPrice*reservationTicketCount)
+                .reservationDeleted(reservationDeleted)
+                .reservationCreateAt(reservationCreateAt)
                 .build();
     }
 }
