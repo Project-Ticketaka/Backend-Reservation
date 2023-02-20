@@ -54,7 +54,7 @@ jobs:
         with:
           # kubernetes yaml 파일 저장
           repository: Project-Ticketaka/manifest # k8s yaml 파일이 있는 repo
-          ref: feature/operation  # branch 이름
+          ref: main  # branch 이름
           # 내 repository에 push 하기 위한 Personal Access Token이 필요
           token: ${{ secrets.PAT }} # Github Action token을 발급받아서 repo secrect에 등록해줘야한다
           path: manifest # 최상위 경로로 repository와 동일하게 설정
