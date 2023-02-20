@@ -15,4 +15,5 @@ public interface ReservationService {
     ReservationListDTO getReservation(Long reservationId);
 
     ResponseEntity<String> deleteReservation(Long reservationId);
+
 }
