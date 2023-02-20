@@ -14,15 +14,15 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReservationListDTO {
-    private Long reservation_id;
-    private int reservation_ticket_count;
+    private Long reservationId;
+    private int reservationTicketCount;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
-    private LocalDate reservation_date;
-    private String reservation_time;
-    private int reservation_price;
-    private int reservation_total_price;
-    private String reservation_poster;
-    private String reservation_deleted;
-    private LocalDateTime reservation_createAt;
+    private LocalDate reservationDate;
+    private String reservationTime;
+    private int reservationPrice;
+    private int reservationTotalPrice;
+    private String reservationPoster;
+    private String reservationDeleted;
+    private LocalDateTime reservationCreateAt;
 
 }
