@@ -27,9 +27,10 @@ public class ReservationController {
         return reservationService.reservation(dto);
     }
 
-    @GetMapping("/list")
-    public ResponseEntity<List<ReservationListDTO>> reservationList(@RequestBody Map<String, Long> memberMap) {
-        List<ReservationListDTO> reservationList = reservationService.getReservationList(memberMap.get("member_id"));
+    @GetMapping("/lists/{member_id}")
+    public ResponseEntity<List<ReservationListDTO>> reservationList(
+            @PathVariable("member_id") Long memberId) {
+        List<ReservationListDTO> reservationList = reservationService.getReservationList(memberId);
         return ResponseEntity.ok(reservationList);
     }
 

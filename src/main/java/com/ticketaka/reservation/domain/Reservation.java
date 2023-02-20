@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name="RESERVATION", indexes = @Index(name = "idx__member_id", columnList = "member_id"))
 public class Reservation {
 
     @Id
@@ -50,7 +51,7 @@ public class Reservation {
 
     @PrePersist
     public void prePersist(){
-        this.reservationDeleted = this.reservationDeleted == null ? "Y" : this.reservationDeleted;
+        this.reservationDeleted = this.reservationDeleted == null ? "N" : this.reservationDeleted;
     }
 
 
