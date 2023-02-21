@@ -3,6 +3,7 @@ package com.ticketaka.reservation.service;
 import com.ticketaka.reservation.domain.Reservation;
 import com.ticketaka.reservation.dto.request.ReservationDTO;
 import com.ticketaka.reservation.dto.response.ReservationListDTO;
+import com.ticketaka.reservation.repository.MemberRepository;
 import com.ticketaka.reservation.repository.ReservationRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,16 +19,16 @@ import java.util.stream.Collectors;
 @Slf4j
 public class ReservationServiceImpl implements ReservationService{
     private final ReservationRepository reservationRepository;
+    private final MemberRepository memberRepository;
 
     @Override
     @Transactional
-    public ResponseEntity<String> reservation(ReservationDTO dto) {
+    public void reservation(ReservationDTO dto) {
         try{
             reservationRepository.save(dto.reqToEntity());
-            return ResponseEntity.ok("SUCCESS_RESERVATION");
+            String memberEmail = memberRepository.findByEmail(dto.getMemberId());
         }catch (Exception e) {
-            log.error(e.toString());
-            return ResponseEntity.badRequest().body("FAIL_RESERVATION");
+            throw e;
         }
     }
 
@@ -36,7 +37,6 @@ public class ReservationServiceImpl implements ReservationService{
     public List<ReservationListDTO> getReservationList(Long memberId) {
         List<Reservation> reservationList = reservationRepository.findByMemberId(memberId);
         return reservationList.stream().map(Reservation::toReservationResponse).collect(Collectors.toList());
-
     }
 
     @Override
@@ -47,13 +47,11 @@ public class ReservationServiceImpl implements ReservationService{
     }
 
     @Override
-    public ResponseEntity<String> deleteReservation(Long reservationId) {
+    public void deleteReservation(Long reservationId) {
         try{
             reservationRepository.deleteById(reservationId);
-            return ResponseEntity.ok("SUCCESS_DELETE_RESERVATION");
         }catch (Exception e) {
-            log.error(e.toString());
-            return ResponseEntity.badRequest().body("FAIL_DELETE_RESERVATION");
+            throw e;
         }
     }
 }
