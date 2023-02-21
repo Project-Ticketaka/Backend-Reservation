@@ -1,7 +1,9 @@
 package com.ticketaka.reservation.controller;
 
+import com.ticketaka.reservation.dto.StatusCode;
 import com.ticketaka.reservation.dto.request.RsvMemberDTO;
 import com.ticketaka.reservation.dto.request.ReservationDTO;
+import com.ticketaka.reservation.dto.response.BaseResponse;
 import com.ticketaka.reservation.dto.response.ReservationListDTO;
 import com.ticketaka.reservation.service.EmailService;
 import com.ticketaka.reservation.service.MemberService;
@@ -23,35 +25,37 @@ public class ReservationController {
     private final MemberService memberService;
 
     @PostMapping("/create/member")
-    public ResponseEntity<String> createMember(@RequestBody RsvMemberDTO dto) {
-        return memberService.createMember(dto);
+    public BaseResponse createMember(@RequestBody RsvMemberDTO dto) {
+        memberService.createMember(dto);
+        return new BaseResponse(StatusCode.OK);
     }
 
 
     @PostMapping("/create")
-    public ResponseEntity<String> reservation(@RequestBody ReservationDTO dto) {
+    public BaseResponse reservation(@RequestBody ReservationDTO dto) {
 //        emailService.sendMail(dto);
-        return reservationService.reservation(dto);
+        reservationService.reservation(dto);
+        return new BaseResponse(StatusCode.OK);
     }
 
     @GetMapping("/lists/{member_id}")
-    public ResponseEntity<List<ReservationListDTO>> reservationList(
+    public BaseResponse reservationList(
             @PathVariable("member_id") Long memberId) {
-        List<ReservationListDTO> reservationList = reservationService.getReservationList(memberId);
-        return ResponseEntity.ok(reservationList);
+        List<ReservationListDTO> data = reservationService.getReservationList(memberId);
+        return new BaseResponse(StatusCode.OK, data);
     }
 
     @GetMapping("/list/{rsv_id}")
-    public ResponseEntity<ReservationListDTO> reservationInfo(
+    public BaseResponse reservationInfo(
             @PathVariable("rsv_id") Long reservationId) {
-        ReservationListDTO reservationList = reservationService.getReservation(reservationId);
-        return ResponseEntity.ok(reservationList);
+        ReservationListDTO data = reservationService.getReservation(reservationId);
+        return new BaseResponse(StatusCode.OK, data);
     }
 
     @DeleteMapping("/delete/{rsvId}")
-    public ResponseEntity<String> deleteReservation(
-            @PathVariable("rsvId") Long reservationId
-    ) {
-        return reservationService.deleteReservation(reservationId);
+    public BaseResponse deleteReservation(
+            @PathVariable("rsvId") Long reservationId) {
+        reservationService.deleteReservation(reservationId);
+        return new BaseResponse(StatusCode.OK);
     }
 }

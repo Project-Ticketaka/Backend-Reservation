@@ -8,12 +8,12 @@ import java.util.List;
 
 public interface ReservationService {
 
-    ResponseEntity<String> reservation(ReservationDTO dto);
+    void reservation(ReservationDTO dto);
 
     List<ReservationListDTO> getReservationList(Long memberId);
 
     ReservationListDTO getReservation(Long reservationId);
 
-    ResponseEntity<String> deleteReservation(Long reservationId);
+    void deleteReservation(Long reservationId);
 
 }
