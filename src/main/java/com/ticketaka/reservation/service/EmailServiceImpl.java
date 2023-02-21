@@ -33,8 +33,8 @@ public class EmailServiceImpl implements EmailService{
         String message = templateEngine.process("mail/mail-ticket", context);
         try {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-            mimeMessageHelper.setTo(reservationDTO.getMemberEmail()); // 메일 수신자
-            System.out.println(reservationDTO.getMemberEmail());
+            mimeMessageHelper.setTo(reservationDTO.getReservationPoster()); // 메일 수신자
+            System.out.println(reservationDTO.getReservationPoster());
             mimeMessageHelper.setSubject("email Title"); // 메일 제목
             mimeMessageHelper.setText(message, true); // 메일 본문 내용, HTML 여부
 
