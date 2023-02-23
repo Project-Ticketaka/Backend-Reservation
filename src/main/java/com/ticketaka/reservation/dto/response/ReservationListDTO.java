@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 public class ReservationListDTO {
     private Long reservationId;
     private int reservationTicketCount;
+    private String performanceTitle;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
     private LocalDate reservationDate;
     private String reservationTime;

@@ -61,6 +61,7 @@ public class Reservation {
     public ReservationListDTO toReservationResponse(){
         return ReservationListDTO.builder()
                 .reservationId(reservationId)
+                .performanceTitle(performanceTitle)
                 .reservationTicketCount(reservationTicketCount)
                 .reservationDate(reservationDate)
                 .reservationTime(reservationTime)
