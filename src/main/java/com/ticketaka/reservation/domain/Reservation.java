@@ -22,34 +22,34 @@ public class Reservation {
     @Column(name = "reservation_id", updatable = false)
     private Long reservationId;
 
-    @Column(name = "member_id")
+    @Column(name = "member_id", nullable = false)
     private Long memberId;
 
-    @Column(name = "performance_id")
+    @Column(name = "performance_id", nullable = false)
     private String performanceId;
 
-    @Column(name = "performance_title")
+    @Column(name = "performance_title", nullable = false)
     private String performanceTitle;
 
-    @Column(name = "reservation_ticket_count")
+    @Column(name = "reservation_ticket_count", nullable = false)
     private int reservationTicketCount;
 
-    @Column(name = "reservation_date")
+    @Column(name = "reservation_date", nullable = false)
     private LocalDate reservationDate;
 
-    @Column(name = "reservation_time")
+    @Column(name = "reservation_time", nullable = false)
     private String reservationTime;
 
-    @Column(name = "reservation_price")
+    @Column(name = "reservation_price", nullable = false)
     private int reservationPrice;
 
-    @Column(name = "reservation_poster", columnDefinition = "TEXT")
+    @Column(name = "reservation_poster", columnDefinition = "TEXT", nullable = false)
     private String reservationPoster;
 
-    @Column(name = "reservation_deleted ")
+    @Column(name = "reservation_deleted ", nullable = false)
     private String reservationDeleted;
 
-    @Column(name = "reservation_createAt")
+    @Column(name = "reservation_createAt", nullable = false)
     private LocalDateTime reservationCreateAt;
 
     @PrePersist

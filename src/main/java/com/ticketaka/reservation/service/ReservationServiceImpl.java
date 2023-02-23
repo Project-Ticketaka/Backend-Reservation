@@ -1,5 +1,10 @@
 package com.ticketaka.reservation.service;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
 import com.ticketaka.reservation.domain.Reservation;
 import com.ticketaka.reservation.dto.request.ReservationDTO;
 import com.ticketaka.reservation.dto.response.ReservationListDTO;
@@ -9,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -19,6 +25,7 @@ import org.thymeleaf.context.Context;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -42,32 +49,44 @@ public class ReservationServiceImpl implements ReservationService{
             reservationRepository.save(dto.reqToEntity());
 
             // mail 관련
-            String memberEmail = memberRepository.findByEmail(dto.getMemberId());
+//            String memberEmail = memberRepository.findByEmail(dto.getMemberId());
+//
+//            MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+//
+//            int width = 200;
+//            int height = 200;
+//            BitMatrix matrix = new MultiFormatWriter().encode("1234", BarcodeFormat.QR_CODE, width, height);
+//
+//            try (ByteArrayOutputStream out = new ByteArrayOutputStream();) {
+//                MatrixToImageWriter.writeToStream(matrix, "PNG", out);
+//            }
+//
+//            Context context = new Context();
+//            context.setVariable("data", dto);
+//            context.setVariable("qr", MatrixToImageWriter);
+//            String message = templateEngine.process("mail/mail-ticket2", context);
+//
+//            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+//            mimeMessageHelper.setTo(memberEmail); // 메일 수신자
+//            System.out.println(memberEmail);
+//            mimeMessageHelper.setSubject("[Ticketaka] 예약 정보"); // 메일 제목
+//            mimeMessageHelper.setText(message, true); // 메일 본문 내용, HTML 여부
 
-            MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-            Context context = new Context();
-            context.setVariable("data", dto);
-            String message = templateEngine.process("mail/mail-ticket2", context);
 
-            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-            mimeMessageHelper.setTo(memberEmail); // 메일 수신자
-            System.out.println(memberEmail);
-            mimeMessageHelper.setSubject("email Title"); // 메일 제목
-            mimeMessageHelper.setText(message, true); // 메일 본문 내용, HTML 여부
-
-            File file = new ClassPathResource("static/images/bg_ticket.png").getFile();
-            FileSystemResource fsr = new FileSystemResource(file);
-
-            mimeMessageHelper.addInline("bg_ticket", fsr);
-
-            javaMailSender.send(mimeMessage);
-
-            log.info("Success Send Email");
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (Exception e) {
+//            javaMailSender.send(mimeMessage);
+//
+//            log.info("Success Send Email");
+        }
+//        catch (MessagingException e) {
+//            throw new RuntimeException(e);
+//        }
+//        catch (WriterException e) {
+//            throw new RuntimeException(e);
+//        }
+//        catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+        catch (Exception e) {
             throw e;
         }
     }
