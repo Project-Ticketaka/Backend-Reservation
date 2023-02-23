@@ -18,6 +18,7 @@ public class ReservationDTO {
     private Long memberId;
     //private String memberEmail;
     private String performanceId;
+    private String performanceTitle;
     private int reservationTicketCount;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
     private LocalDate reservationDate;
@@ -31,6 +32,7 @@ public class ReservationDTO {
         return Reservation.builder()
                 .memberId(memberId)
                 .performanceId(performanceId)
+                .performanceTitle(performanceTitle)
                 .reservationTicketCount(reservationTicketCount)
                 .reservationDate(reservationDate)
                 .reservationTime(reservationTime)

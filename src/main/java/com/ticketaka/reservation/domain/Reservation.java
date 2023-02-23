@@ -28,6 +28,9 @@ public class Reservation {
     @Column(name = "performance_id")
     private String performanceId;
 
+    @Column(name = "performance_title")
+    private String performanceTitle;
+
     @Column(name = "reservation_ticket_count")
     private int reservationTicketCount;
 
