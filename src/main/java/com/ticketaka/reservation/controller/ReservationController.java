@@ -52,9 +52,9 @@ public class ReservationController {
         return new BaseResponse(StatusCode.OK, data);
     }
 
-    @DeleteMapping("/delete/{rsvId}")
+    @DeleteMapping("/delete/{rsv_id}")
     public BaseResponse deleteReservation(
-            @PathVariable("rsvId") Long reservationId) {
+            @PathVariable("rsv_id") Long reservationId) {
         reservationService.deleteReservation(reservationId);
         return new BaseResponse(StatusCode.OK);
     }
