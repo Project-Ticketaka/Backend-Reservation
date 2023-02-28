@@ -14,11 +14,10 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="RESERVATION", indexes = @Index(name = "idx__member_id", columnList = "member_id"))
-public class Reservation {
+@Table(name="UNIT_RESERVATION", indexes = @Index(name = "idx__member_id", columnList = "member_id"))
+public class UnitReservation {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //IDENTITY //AUTO
     @Column(name = "reservation_id")
     private Long reservationId;
 
@@ -51,11 +50,6 @@ public class Reservation {
 
     @Column(name = "reservation_createAt", nullable = false)
     private LocalDateTime reservationCreateAt;
-
-    @PrePersist
-    public void prePersist(){
-        this.reservationDeleted = this.reservationDeleted == null ? "N" : this.reservationDeleted;
-    }
 
 
     public ReservationListDTO toReservationResponse(){

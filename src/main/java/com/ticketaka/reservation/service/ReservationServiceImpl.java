@@ -6,10 +6,12 @@ import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.ticketaka.reservation.domain.Reservation;
+import com.ticketaka.reservation.domain.UnitReservation;
 import com.ticketaka.reservation.dto.request.ReservationDTO;
 import com.ticketaka.reservation.dto.response.ReservationListDTO;
 import com.ticketaka.reservation.repository.MemberRepository;
 import com.ticketaka.reservation.repository.ReservationRepository;
+import com.ticketaka.reservation.repository.UnitReservationRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ClassPathResource;
@@ -17,7 +19,7 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
-//import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.thymeleaf.TemplateEngine;
@@ -36,6 +38,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class ReservationServiceImpl implements ReservationService{
     private final ReservationRepository reservationRepository;
+    private final UnitReservationRepository unitReservationRepository;
     private final MemberRepository memberRepository;
 
     private  final JavaMailSender javaMailSender;
@@ -80,8 +83,8 @@ public class ReservationServiceImpl implements ReservationService{
     @Override
     @Transactional(readOnly = true)
     public List<ReservationListDTO> getReservationList(Long memberId) {
-        List<Reservation> reservationList = reservationRepository.findByMemberId(memberId);
-        return reservationList.stream().map(Reservation::toReservationResponse).collect(Collectors.toList());
+        List<UnitReservation> reservationList = unitReservationRepository.findByMemberId(memberId);
+        return reservationList.stream().map(UnitReservation::toReservationResponse).collect(Collectors.toList());
     }
 
     @Override
