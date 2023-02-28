@@ -2,7 +2,6 @@ package com.ticketaka.reservation.service;
 
 import com.ticketaka.reservation.dto.request.ReservationDTO;
 import com.ticketaka.reservation.dto.response.ReservationListDTO;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
