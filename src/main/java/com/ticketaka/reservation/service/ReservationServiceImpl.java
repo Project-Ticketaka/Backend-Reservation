@@ -1,10 +1,10 @@
 package com.ticketaka.reservation.service;
 
-//import com.google.zxing.BarcodeFormat;
-//import com.google.zxing.MultiFormatWriter;
-//import com.google.zxing.WriterException;
-//import com.google.zxing.client.j2se.MatrixToImageWriter;
-//import com.google.zxing.common.BitMatrix;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
 import com.ticketaka.reservation.domain.Reservation;
 import com.ticketaka.reservation.dto.request.ReservationDTO;
 import com.ticketaka.reservation.dto.response.ReservationListDTO;
@@ -12,22 +12,22 @@ import com.ticketaka.reservation.repository.MemberRepository;
 import com.ticketaka.reservation.repository.ReservationRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-//import org.springframework.core.io.ClassPathResource;
-//import org.springframework.core.io.FileSystemResource;
-//import org.springframework.http.MediaType;
-//import org.springframework.http.ResponseEntity;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 //import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.thymeleaf.TemplateEngine;
-//import org.thymeleaf.context.Context;
+import org.thymeleaf.context.Context;
 
-//import javax.mail.MessagingException;
-//import javax.mail.internet.MimeMessage;
-//import java.io.ByteArrayOutputStream;
-//import java.io.File;
-//import java.io.IOException;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,46 +46,32 @@ public class ReservationServiceImpl implements ReservationService{
     public void reservation(ReservationDTO dto) {
         try{
             // 예약 정보 INSERT
-            reservationRepository.save(dto.reqToEntity());
+            Long reservationId = reservationRepository.save(dto.reqToEntity()).getReservationId();
 
             // mail 관련
 //            String memberEmail = memberRepository.findByEmail(dto.getMemberId());
 //
 //            MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 //
-//            int width = 200;
-//            int height = 200;
-//            BitMatrix matrix = new MultiFormatWriter().encode("1234", BarcodeFormat.QR_CODE, width, height);
-//
-//            try (ByteArrayOutputStream out = new ByteArrayOutputStream();) {
-//                MatrixToImageWriter.writeToStream(matrix, "PNG", out);
-//            }
 //
 //            Context context = new Context();
 //            context.setVariable("data", dto);
-//            context.setVariable("qr", MatrixToImageWriter);
+//            context.setVariable("reservationId", reservationId);
+//
 //            String message = templateEngine.process("mail/mail-ticket2", context);
 //
 //            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 //            mimeMessageHelper.setTo(memberEmail); // 메일 수신자
-//            System.out.println(memberEmail);
 //            mimeMessageHelper.setSubject("[Ticketaka] 예약 정보"); // 메일 제목
 //            mimeMessageHelper.setText(message, true); // 메일 본문 내용, HTML 여부
-
-
+//
+//
 //            javaMailSender.send(mimeMessage);
 //
 //            log.info("Success Send Email");
+//        } catch (MessagingException e) {
+//            throw new RuntimeException(e);
         }
-//        catch (MessagingException e) {
-//            throw new RuntimeException(e);
-//        }
-//        catch (WriterException e) {
-//            throw new RuntimeException(e);
-//        }
-//        catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
         catch (Exception e) {
             throw e;
         }
