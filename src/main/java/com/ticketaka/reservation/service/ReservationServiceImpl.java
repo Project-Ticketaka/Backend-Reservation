@@ -1,10 +1,5 @@
 package com.ticketaka.reservation.service;
 
-//import com.google.zxing.BarcodeFormat;
-//import com.google.zxing.MultiFormatWriter;
-//import com.google.zxing.WriterException;
-//import com.google.zxing.client.j2se.MatrixToImageWriter;
-//import com.google.zxing.common.BitMatrix;
 import com.ticketaka.reservation.domain.Reservation;
 import com.ticketaka.reservation.domain.UnitReservation;
 import com.ticketaka.reservation.dto.request.ReservationDTO;
@@ -14,21 +9,10 @@ import com.ticketaka.reservation.repository.ReservationRepository;
 import com.ticketaka.reservation.repository.UnitReservationRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-//import org.springframework.core.io.ClassPathResource;
-//import org.springframework.core.io.FileSystemResource;
-//import org.springframework.http.MediaType;
-import org.springframework.mail.javamail.JavaMailSender;
-//import org.springframework.mail.javamail.MimeMessageHelper;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-//import org.thymeleaf.TemplateEngine;
-//import org.thymeleaf.context.Context;
 
-//import javax.mail.MessagingException;
-//import javax.mail.internet.MimeMessage;
-//import java.io.ByteArrayOutputStream;
-//import java.io.File;
-//import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,7 +24,7 @@ public class ReservationServiceImpl implements ReservationService{
     private final UnitReservationRepository unitReservationRepository;
     private final MemberRepository memberRepository;
 
-    private  final JavaMailSender javaMailSender;
+//    private  final JavaMailSender javaMailSender;
 //    private final TemplateEngine templateEngine;
 
     @Override
