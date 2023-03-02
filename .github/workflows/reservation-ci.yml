@@ -65,7 +65,7 @@ jobs:
       - name: Update Kubernetes resources
         run: |
           pwd
-          cd manifest/overlays/prd/ 
+          cd manifest/resources/reservation
           kustomize edit set image roheejae/ticketaka-reservation:${{ steps.tag_version.outputs.new_tag }}
           cat kustomization.yaml
       # 수정된 kustomization.yaml 파일 commit push
