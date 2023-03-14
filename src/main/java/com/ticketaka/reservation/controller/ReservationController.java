@@ -1,11 +1,9 @@
 package com.ticketaka.reservation.controller;
 
 import com.ticketaka.reservation.dto.StatusCode;
-import com.ticketaka.reservation.dto.request.RsvMemberDTO;
 import com.ticketaka.reservation.dto.request.ReservationDTO;
 import com.ticketaka.reservation.dto.response.BaseResponse;
 import com.ticketaka.reservation.dto.response.ReservationListDTO;
-import com.ticketaka.reservation.service.MemberService;
 import com.ticketaka.reservation.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,19 +17,10 @@ import java.util.List;
 @RequestMapping("/reservation")
 public class ReservationController {
     private final ReservationService reservationService;
-    private final MemberService memberService;
-
-    @PostMapping("/create/member")
-    public BaseResponse createMember(@RequestBody RsvMemberDTO dto) {
-        memberService.createMember(dto);
-        return new BaseResponse(StatusCode.OK);
-    }
-
 
     @PostMapping("/create")
-    public BaseResponse reservation(@RequestBody ReservationDTO dto) {
-//        emailService.sendMail(dto);
-        reservationService.reservation(dto);
+    public BaseResponse reservation(@RequestHeader("memberid") Long memberId, @RequestBody ReservationDTO dto) {
+        reservationService.reservation(dto, memberId);
         return new BaseResponse(StatusCode.OK);
     }
 
