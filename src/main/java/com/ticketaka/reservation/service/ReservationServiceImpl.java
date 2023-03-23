@@ -9,7 +9,7 @@ import com.ticketaka.reservation.repository.UnitReservationRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-//import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,15 +22,16 @@ import java.util.stream.Collectors;
 public class ReservationServiceImpl implements ReservationService{
     private final ReservationRepository reservationRepository;
     private final UnitReservationRepository unitReservationRepository;
-//    private final RabbitTemplate rabbitTemplate;
+    private final RabbitTemplate rabbitTemplate;
 
     @Override
     @Transactional
     public void reservation(ReservationDTO dto, Long memberId) {
         dto.setMemberId(memberId);
+//        dto = reservationRepository.save(dto.reqToEntity());
         Long reservationId = reservationRepository.save(dto.reqToEntity()).getReservationId();
         dto.setReservationId(reservationId);
-//        rabbitTemplate.convertAndSend("mail.exchange", "mail.key", dto);
+        rabbitTemplate.convertAndSend("mail.exchange", "mail.key", dto);
     }
 
     @Override
