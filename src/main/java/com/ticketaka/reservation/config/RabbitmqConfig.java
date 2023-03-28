@@ -14,6 +14,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Configuration
 public class RabbitmqConfig {
 
@@ -32,7 +35,9 @@ public class RabbitmqConfig {
     // 메일은 항상 보내질 수 있도록 rabbitmq 가 종료되더라도 큐,메시지가 보존됨
     @Bean
     Queue queue() {
-        return new Queue("mail.queue", true);
+        Map<String, Object> args = new HashMap<>();
+        args.put("x-queue-type", "quorum");
+        return new Queue("mail.queue", true, false, false, args);
     }
 
     @Bean
