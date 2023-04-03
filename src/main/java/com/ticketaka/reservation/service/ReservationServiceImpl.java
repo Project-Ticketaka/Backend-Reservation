@@ -31,7 +31,7 @@ public class ReservationServiceImpl implements ReservationService{
 //        dto = reservationRepository.save(dto.reqToEntity());
         Long reservationId = reservationRepository.save(dto.reqToEntity()).getReservationId();
         dto.setReservationId(reservationId);
-        rabbitTemplate.convertAndSend("mail.exchange", "mail.key", dto);
+//        rabbitTemplate.convertAndSend("mail.exchange", "mail.key", dto);
     }
 
     @Override
