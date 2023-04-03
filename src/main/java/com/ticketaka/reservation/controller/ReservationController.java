@@ -20,14 +20,14 @@ public class ReservationController {
 
     @PostMapping("/create")
     public BaseResponse reservation(
-            @RequestHeader("x-istio-jwt-sub") Long memberId, @RequestBody ReservationDTO dto) {
+            @RequestHeader("memberid") Long memberId, @RequestBody ReservationDTO dto) {
         reservationService.reservation(dto, memberId);
         return new BaseResponse(StatusCode.OK);
     }
 
     @GetMapping("/lists")
     public BaseResponse reservationList(
-            @RequestHeader("x-istio-jwt-sub") Long memberId) {
+            @RequestHeader("memberid") Long memberId) {
         List<ReservationListDTO> data = reservationService.getReservationList(memberId);
         return new BaseResponse(StatusCode.OK, data);
     }
