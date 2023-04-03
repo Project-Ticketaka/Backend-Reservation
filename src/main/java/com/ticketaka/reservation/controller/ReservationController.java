@@ -27,7 +27,7 @@ public class ReservationController {
 
     @GetMapping("/lists")
     public BaseResponse reservationList(
-            @RequestHeader("memberid") Long memberId) {
+            @RequestHeader("x-istio-jwt-sub") Long memberId) {
         List<ReservationListDTO> data = reservationService.getReservationList(memberId);
         return new BaseResponse(StatusCode.OK, data);
     }
