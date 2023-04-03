@@ -19,14 +19,15 @@ public class ReservationController {
     private final ReservationService reservationService;
 
     @PostMapping("/create")
-    public BaseResponse reservation(@RequestHeader("memberid") Long memberId, @RequestBody ReservationDTO dto) {
+    public BaseResponse reservation(
+            @RequestHeader("memberid") Long memberId, @RequestBody ReservationDTO dto) {
         reservationService.reservation(dto, memberId);
         return new BaseResponse(StatusCode.OK);
     }
 
-    @GetMapping("/lists/{member_id}")
+    @GetMapping("/lists")
     public BaseResponse reservationList(
-            @PathVariable("member_id") Long memberId) {
+            @RequestHeader("memberid") Long memberId) {
         List<ReservationListDTO> data = reservationService.getReservationList(memberId);
         return new BaseResponse(StatusCode.OK, data);
     }
