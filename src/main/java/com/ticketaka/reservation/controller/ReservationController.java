@@ -20,7 +20,7 @@ public class ReservationController {
 
     @PostMapping("/create")
     public BaseResponse reservation(
-            @RequestHeader("memberid") Long memberId, @RequestBody ReservationDTO dto) {
+            @RequestHeader("x-istio-jwt-sub") Long memberId, @RequestBody ReservationDTO dto) {
         reservationService.reservation(dto, memberId);
         return new BaseResponse(StatusCode.OK);
     }
