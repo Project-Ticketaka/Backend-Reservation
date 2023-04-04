@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("/reservation")
 public class ReservationController {
     private final ReservationService reservationService;
-
+    // memberid
     @PostMapping("/create")
     public BaseResponse reservation(
             @RequestHeader("x-istio-jwt-sub") Long memberId, @RequestBody ReservationDTO dto) {
