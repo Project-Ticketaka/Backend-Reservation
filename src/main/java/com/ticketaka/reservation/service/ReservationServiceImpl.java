@@ -1,5 +1,6 @@
 package com.ticketaka.reservation.service;
 
+import com.ticketaka.exception.CustomException.NoDataReservationListException;
 import com.ticketaka.reservation.domain.Reservation;
 import com.ticketaka.reservation.domain.UnitReservation;
 import com.ticketaka.reservation.dto.request.ReservationDTO;
@@ -28,7 +29,6 @@ public class ReservationServiceImpl implements ReservationService{
     @Transactional
     public void reservation(ReservationDTO dto, Long memberId) {
         dto.setMemberId(memberId);
-//        dto = reservationRepository.save(dto.reqToEntity());
         Long reservationId = reservationRepository.save(dto.reqToEntity()).getReservationId();
         dto.setReservationId(reservationId);
         rabbitTemplate.convertAndSend("mail.exchange", "mail.key", dto);
@@ -38,6 +38,11 @@ public class ReservationServiceImpl implements ReservationService{
     @Transactional(readOnly = true)
     public List<ReservationListDTO> getReservationList(Long memberId) {
         List<UnitReservation> reservationList = unitReservationRepository.findByMemberId(memberId);
+
+        if(reservationList.isEmpty()){
+            throw new NoDataReservationListException();
+        }
+
         return reservationList.stream().map(UnitReservation::toReservationResponse).collect(Collectors.toList());
     }
 
@@ -50,10 +55,6 @@ public class ReservationServiceImpl implements ReservationService{
 
     @Override
     public void deleteReservation(Long reservationId) {
-        try{
-            reservationRepository.deleteById(reservationId);
-        }catch (Exception e) {
-            throw e;
-        }
+        reservationRepository.deleteById(reservationId);
     }
 }
