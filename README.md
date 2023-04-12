@@ -191,6 +191,13 @@
 
 <br>
 
+## 💽 ERD
+
+- Reservation Table - 예약된 공연 정보
+- trg_deletedReservation TBL Trigger- 예약 취소시 Delete_Reservation Table에 데이터 삽입
+- Delete_Reservation Table - 취소된 예약 정보
+- Unit_Reservation View - 예매내역 조회시 Reservation Table, Delete_Reservation Table을 모두 보여주는 View
+
 ## 📧 메일 요청 ( Spring )
 
 - `/reservation/create` 로 요청된 예매 정보 객체를 RabbitTemplate를 통해 Json형태로 Convert해 정해진 `exchange`, `routingkey`, `queue`로 전송되게 된다.
