@@ -193,10 +193,17 @@
 
 ## 💽 ERD
 
+<br>
+
+![ERD](https://user-images.githubusercontent.com/68692931/231386438-ec59c3f7-b69b-4af3-bf90-2b94826297e9.png)
+
+<br>
+
 - Reservation Table - 예약된 공연 정보
 - trg_deletedReservation TBL Trigger- 예약 취소시 Delete_Reservation Table에 데이터 삽입
 - Delete_Reservation Table - 취소된 예약 정보
 - Unit_Reservation View - 예매내역 조회시 Reservation Table, Delete_Reservation Table을 모두 보여주는 View
+
 
 ## 📧 메일 요청 ( Spring )
 
